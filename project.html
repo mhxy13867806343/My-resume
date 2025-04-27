@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人作品/项目</title>
+  
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./project.css">
+  <style>
+    .project-title {text-align:center;}
+    .project-timeline {}
+    .dark-mode{
+      background: #1e1e1e;
+    }
+    .back-link {margin: 32px 0 0 0; display: inline-block; color: #1e80ff; font-weight: bold;}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="project-root" style="max-width:600px;margin:40px auto 0 auto;padding:24px 18px;background:rgba(255,255,255,0.92);border-radius:18px;box-shadow:0 4px 32px #0001;">
+      <h1 class="project-title">个人作品 / 项目</h1>
+      <div class="project-timeline">
+        <!-- 项目卡片将在这里动态生成 -->
+      </div>
+      <a class="back-link" href="./main.html">返回首页</a>
+      <!-- 暗黑模式切换按钮（SVG） -->
+      <button id="toggle-dark-mode" class="darkmode-fab" aria-label="切换暗黑模式" style="position: absolute; top: 16px; right: 16px;">
+        <svg id="darkmode-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" fill="#222" stroke="#ffda47" stroke-width="2"/>
+          <path d="M16 6a10 10 0 1 0 10 10c0-5.5-4.5-10-10-10z" fill="#ffda47"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+  <script src="./project.js"></script>
+  <script>
+    // 初始化时根据 localStorage 自动应用暗黑模式
+    if (localStorage.getItem('darkMode') === '1') {
+      document.documentElement.classList.add('dark-mode');
+    }
+    // 按钮切换暗黑模式
+    function setDarkIcon(isDark) {
+      const icon = document.getElementById('darkmode-icon');
+      if (!icon) return;
+      if (isDark) {
+        icon.innerHTML = '<circle cx="16" cy="16" r="12" fill="#222" stroke="#ffda47" stroke-width="2"/><path d="M16 6a10 10 0 1 0 10 10c0-5.5-4.5-10-10-10z" fill="#ffda47"/>';
+      } else {
+        icon.innerHTML = '<circle cx="16" cy="16" r="12" fill="#ffda47" stroke="#222" stroke-width="2"/><path d="M22 16a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" fill="#fff"/>';
+      }
+    }
+    function updateDarkMode() {
+      const isDark = document.documentElement.classList.contains('dark-mode');
+      setDarkIcon(isDark);
+    }
+    document.getElementById('toggle-dark-mode').onclick = function() {
+      const isDark = document.documentElement.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDark ? '1' : '0');
+      setDarkIcon(isDark);
+    };
+    // 页面加载时同步 icon
+    updateDarkMode();
+  </script>
+</body>
+</html>

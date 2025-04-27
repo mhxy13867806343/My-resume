@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间工具</title>
+  <link rel="stylesheet" href="./main.css">
+  <style>
+    .time-tool-root { max-width: 420px; margin: 40px auto 0 auto; background: #fff; border-radius: 14px; box-shadow: 0 4px 32px #1e80ff11; padding: 32px 18px 48px 18px; text-align: center; }
+    .time-tool-title { font-size: 1.5rem; font-weight: bold; color: #1e80ff; margin-bottom: 18px; }
+    .time-tool-block { margin-bottom: 22px; }
+    .time-tool-label { color: #222; font-size: 1.08rem; margin-bottom: 8px; display: block; }
+    .time-tool-input { width: 90%; padding: 8px 10px; border: 1px solid #dbeafe; border-radius: 6px; font-size: 1rem; margin-bottom: 8px; }
+    .time-tool-btn { padding: 7px 18px; border-radius: 6px; background: #1e80ff; color: #fff; border: none; font-weight: 500; margin: 0 6px; cursor: pointer; transition: background 0.18s; }
+    .time-tool-btn:hover { background: #409eff; }
+    .time-tool-result { font-size: 1.08rem; color: #ff9800; margin-top: 8px; }
+    .time-tool-back { display: inline-block; margin-top: 32px; color: #1e80ff; font-weight: bold; text-decoration: underline; }
+  </style>
+</head>
+<body style="background:#f8fafc;">
+  <div class="time-tool-root">
+    <div class="time-tool-title">时间戳 & 时间格式 工具</div>
+    <div class="time-tool-block">
+      <div class="time-tool-label">当前时间</div>
+      <div id="now-time" style="font-size:1.1rem;font-weight:500;margin-bottom:6px;color:#333;"></div>
+      <div id="now-timestamp" style="font-size:0.98rem;color:#888;"></div>
+    </div>
+    <div class="time-tool-block">
+      <div class="time-tool-label">时间戳转 yyyy-MM-dd HH:mm:ss</div>
+      <input id="input-timestamp" class="time-tool-input" placeholder="请输入时间戳">
+      <button class="time-tool-btn" onclick="convertToDatetime()">转换</button>
+      <div id="result-datetime" class="time-tool-result"></div>
+    </div>
+    <div class="time-tool-block">
+      <div class="time-tool-label">yyyy-MM-dd HH:mm:ss 转时间戳</div>
+      <input id="input-datetime" class="time-tool-input" type="text" placeholder="2025-04-22 23:45:00">
+      <button class="time-tool-btn" onclick="convertToTimestamp()">转换</button>
+      <div id="result-timestamp" class="time-tool-result"></div>
+    </div>
+    <a href="./main.html" class="time-tool-back">返回首页</a>
+  </div>
+  <script>
+    function pad(n) { return n < 10 ? '0'+n : n; }
+    function formatDate(ts) {
+      const d = new Date(ts);
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }
+    function showNow() {
+      const now = new Date();
+      document.getElementById('now-time').innerText = formatDate(now);
+      document.getElementById('now-timestamp').innerText = '时间戳: ' + now.getTime();
+    }
+    showNow();
+    setInterval(showNow, 1000);
+    window.convertToDatetime = function() {
+      const ts = parseInt(document.getElementById('input-timestamp').value, 10);
+      if (!ts || isNaN(ts)) {
+        document.getElementById('result-datetime').innerText = '请输入有效的时间戳';
+        return;
+      }
+      document.getElementById('result-datetime').innerText = formatDate(ts);
+    };
+    window.convertToTimestamp = function() {
+      const val = document.getElementById('input-datetime').value.trim();
+      const dt = val.replace(/-/g, '/');
+      const d = new Date(dt);
+      if (d.toString() === 'Invalid Date') {
+        document.getElementById('result-timestamp').innerText = '请输入有效的时间格式';
+        return;
+      }
+      document.getElementById('result-timestamp').innerText = d.getTime();
+    };
+  </script>
+</body>
+</html>

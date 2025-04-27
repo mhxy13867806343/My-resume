@@ -1,0 +1,108 @@
+/* 时间线样式仿大厂简历/项目进度卡片风格 */
+.company-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: #fafbfc;
+  overflow-x: hidden;
+}
+.timeline {
+  position: relative;
+  margin-left: 36px;
+  padding-left: 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #e6eaf0;
+}
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 36px;
+  position: relative;
+  transition: transform 0.28s cubic-bezier(.4,2,.6,1), box-shadow 0.22s;
+  z-index: 1;
+}
+.timeline-item:hover {
+  transform: translateY(-6px) scale(1.025) rotateZ(-0.5deg);
+  z-index: 2;
+}
+.timeline-item:hover .timeline-dot {
+  background: #ff9800;
+  box-shadow: 0 4px 16px #ff980033,0 0 0 4px #ff980022;
+}
+.timeline-item:hover .timeline-card {
+  box-shadow: 0 12px 36px #409eff33, 0 2px 16px #ff980022;
+  border: 1.5px solid #ff9800;
+  background: linear-gradient(90deg,#fff 90%,#fff7e6 100%);
+}
+.timeline-dot {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #409eff;
+  margin-left: -26px;
+  margin-right: 18px;
+  margin-top: 6px;
+  box-shadow: 0 2px 8px #409eff33;
+}
+.timeline-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px #0001;
+  padding: 24px 28px 18px 28px;
+  min-width: 320px;
+  max-width: 780px;
+  width: 100%;
+  position: relative;
+  transition: box-shadow .2s;
+}
+.timeline-card:hover {
+  box-shadow: 0 8px 32px #409eff22;
+}
+.company-title {
+  font-size: 1.18rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #222;
+}
+.company-time {
+  color: #999;
+  font-size: 0.98rem;
+  margin-left: 8px;
+}
+.company-role {
+  color: #666;
+  font-size: 0.98rem;
+  margin-bottom: 6px;
+}
+.company-stack {
+  color: #bbb;
+  font-size: 0.92rem;
+  margin-bottom: 12px;
+}
+.company-desc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.company-desc li {
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 1.01rem;
+  line-height: 1.8;
+}
+@media (max-width: 900px) {
+  .timeline-card {
+    max-width: 98vw;
+    padding: 14px 8px 12px 10px;
+  }
+  .timeline {
+    margin-left: 16px;
+  }
+}

@@ -1,0 +1,73 @@
+.ui-libs-root {
+    max-width: 820px;
+    margin: 40px auto 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 32px #1e80ff11;
+    padding: 32px 18px 48px 18px;
+  }
+  .ui-libs-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e80ff;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .ui-libs-desc {
+    color: #444;
+    font-size: 1.08rem;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .ui-libs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px 36px;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .ui-libs-card {
+    background: linear-gradient(90deg,#f8fafc 80%,#f0f7ff 100%);
+    border-radius: 9px;
+    box-shadow: 0 2px 12px #409eff11;
+    padding: 18px 24px;
+    min-width: 200px;
+    max-width: 320px;
+    transition: box-shadow .22s, transform .22s;
+    border: 1px solid #f0f4fa;
+  }
+  .ui-libs-card:hover {
+    box-shadow: 0 8px 32px #1e80ff22,0 2px 10px #ff980022;
+    transform: translateY(-5px) scale(1.03);
+    border: 1.5px solid #1e80ff;
+  }
+  .ui-libs-card-title {
+    font-weight: bold;
+    color: #222;
+    font-size: 1.13rem;
+    margin-bottom: 6px;
+  }
+  .ui-libs-card-desc {
+    color: #666;
+    font-size: 0.97rem;
+    margin-bottom: 6px;
+  }
+  .ui-libs-card-link {
+    color: #1e80ff;
+    text-decoration: underline;
+    font-size: 0.98rem;
+    font-weight: 500;
+    transition: color 0.18s;
+  }
+  .ui-libs-card-link:hover {
+    color: #ff9800;
+  }
+  .ui-libs-back {
+    display: block;
+    margin: 40px auto 0 auto;
+    text-align: center;
+    color: #1e80ff;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.1rem;
+  }
